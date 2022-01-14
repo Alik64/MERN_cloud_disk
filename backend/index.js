@@ -13,7 +13,7 @@ const start = async () => {
 
         app.listen(PORT, () => {
             console.log(`server is deployed on port ${PORT}`)
-            // console.log(process.env.REACT_APP_MONGODB_URL)
+
         })
     } catch (e) {
         console.log(e)
