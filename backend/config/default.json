@@ -1,4 +1,4 @@
 {
-    "serverPort" : 5000,
-    "dbUrl" : "mongodb+srv://Alik:Distancionn0EXpan@cloud.pqent.mongodb.net/Cloud?retryWrites=true&w=majority"
+    "serverPort" : 5000
+   
 }
