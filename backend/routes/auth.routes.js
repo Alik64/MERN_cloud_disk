@@ -10,8 +10,8 @@ router.post(
     '/registration',
     [
         // validate email and password with express-validator
-        check(email, "Uncorrect email").isEmail(),
-        check(password, "Password must be longer than 3 and shorter than 12").isLength({ min: 3, max: 12 })
+        check('email', "Uncorrect email").isEmail(),
+        check('password', "Password must be longer than 3 and shorter than 12").isLength({ min: 3, max: 12 })
     ],
     async (req, res) => {
         try {
@@ -24,14 +24,14 @@ router.post(
             // Request body composed with email and password
             const { email, password } = req.body
 
-            // verify if User already exist in DB
-            const candidate = User.findOne({ email })
+            // verify if User already exist in DB 
+            const candidate = await User.findOne({ email })
             if (candidate) {
                 return res.status(400).json({ message: `User with email: ${email} already exist` })
             }
 
             // if not exist ,create a new user in DB with hashed password
-            const hashPassword = await bcrypt.hash(password, 15)
+            const hashPassword = await bcrypt.hash(password, 8)
             const user = new User({ email, password: hashPassword })
 
             // Save new user in DB
