@@ -5,7 +5,7 @@ function App() {
 
   const [email, setEmail] = useState("")
   const [pwd, setPwd] = useState("")
-  const [values, setValues] = useState("")
+
 
 
   const handleSubmit = (e) => {
@@ -23,8 +23,6 @@ function App() {
 
 
   }
-
-
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value)
