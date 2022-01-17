@@ -10,6 +10,7 @@ router.post(
     '/registration',
     [
         // validate email and password with express-validator
+        // check(field, message error)
         check('email', "Uncorrect email").isEmail(),
         check('password', "Password must be longer than 3 and shorter than 12").isLength({ min: 3, max: 12 })
     ],
@@ -41,6 +42,29 @@ router.post(
             return res.json({ message: "User was created" })
 
 
+        } catch (err) {
+            console.log(err)
+            res.send({ message: "Server error" })
+        }
+    })
+// Login
+router.post(
+    '/login',
+    async (req, res) => {
+        try {
+            const { email, password } = req.body
+            // find user and return err message
+            const user = User.findOne({ email })
+
+            if (!user) {
+                return res.status(404).json({ message: "User not found" })
+            }
+            // Compare password in BD with password in req and send err msg
+            const isPassValid = bcrypt.compareSync(password, user.password)
+            if (!isPassValid) {
+                return res.status(400).json({ message: "Invalid password" })
+            }
+            // use of JWT npm i jsonwebtoken
         } catch (err) {
             console.log(err)
             res.send({ message: "Server error" })
