@@ -1,9 +1,9 @@
 const Router = require("express")
 const User = require("../models/User")
-const bcrypt = require('bcryptjs') // npm i bcryptjs
+const bcrypt = require("bcryptjs") // npm i bcryptjs
 const jwt = require("jsonwebtoken") // npm i jsonwebtoken
 const { check, validationResult } = require("express-validator") // npm i express-validator
-
+const config = require("config")
 const router = new Router()
 
 // Registration
@@ -55,7 +55,7 @@ router.post(
         try {
             const { email, password } = req.body
             // find user and return err message
-            const user = User.findOne({ email })
+            const user = await User.findOne({ email })
 
             if (!user) {
                 return res.status(404).json({ message: "User not found" })
@@ -65,9 +65,19 @@ router.post(
             if (!isPassValid) {
                 return res.status(400).json({ message: "Invalid password" })
             }
-            // use of JWT (REACT_APP_SECRET_KEY)
-            const token = jwt.sign({ id: user.id }, process.env.REACT_APP_SECRET_KEY)
-
+            // use of JWT - sign(object we put in token, password, duration )
+            const token = jwt.sign({ id: user.id }, config.get("secretKey"), { expiresIn: "1h" })
+            // return token to client
+            return res.json({
+                token,
+                user: {
+                    id: user.id,
+                    email: user.email,
+                    diskSpace: user.diskSpace,
+                    usedSpace: user.usedSpace,
+                    avatar: user.avatar
+                }
+            })
 
         } catch (err) {
             console.log(err)
