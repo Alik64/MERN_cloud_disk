@@ -1,6 +1,7 @@
 import React from 'react'
 import style from './Navbar.module.css'
 import Logo from '../../assets/images/cloud-cd-logo.png'
+import { Link } from 'react-router-dom'
 export default function Navbar() {
     return (
         <div className={style.navbar}>
@@ -11,8 +12,9 @@ export default function Navbar() {
                 </div>
 
                 <div className={style.navbar_item}>
+
                     <div className={style.navbar_link}>SignIn</div>
-                    <div className={style.navbar_link}>SignUp</div>
+                    <Link to='/signup'><div className={style.navbar_link}>SignUp</div></Link>
                 </div>
             </div>
 

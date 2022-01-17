@@ -1,13 +1,19 @@
 import Navbar from "./components/Navbar/Navbar";
 import './App.css'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Registration from "./components/Registration/Registration";
+
+
 function App() {
-
-
   return (
-    <div className="App">
+    <BrowserRouter>
 
       <Navbar />
-    </div>
+
+      <Routes>
+        <Route path="/signup" element={<Registration />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
