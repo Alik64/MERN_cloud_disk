@@ -65,7 +65,10 @@ router.post(
             if (!isPassValid) {
                 return res.status(400).json({ message: "Invalid password" })
             }
-            // use of JWT 
+            // use of JWT (REACT_APP_SECRET_KEY)
+            const token = jwt.sign({ id: user.id }, process.env.REACT_APP_SECRET_KEY)
+
+
         } catch (err) {
             console.log(err)
             res.send({ message: "Server error" })
