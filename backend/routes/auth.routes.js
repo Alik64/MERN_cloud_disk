@@ -1,6 +1,7 @@
 const Router = require("express")
 const User = require("../models/User")
 const bcrypt = require('bcryptjs') // npm i bcryptjs
+const jwt = require("jsonwebtoken") // npm i jsonwebtoken
 const { check, validationResult } = require("express-validator") // npm i express-validator
 
 const router = new Router()
@@ -64,7 +65,7 @@ router.post(
             if (!isPassValid) {
                 return res.status(400).json({ message: "Invalid password" })
             }
-            // use of JWT npm i jsonwebtoken
+            // use of JWT 
         } catch (err) {
             console.log(err)
             res.send({ message: "Server error" })
