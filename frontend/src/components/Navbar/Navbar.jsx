@@ -8,6 +8,8 @@ import { logout } from '../../redux/userReducer'
 
 export default function Navbar() {
     const isAuth = useSelector(state => state.user.isAuth)
+    const userId = useSelector(state => state.user.currentUser.email)
+    console.log(userId)
     const dispatch = useDispatch()
     return (
         <div className={style.navbar}>
@@ -21,7 +23,12 @@ export default function Navbar() {
 
                     {!isAuth && <div className={style.navbar_link}><Link to='/login'>Sign In</Link></div>}
                     {!isAuth && <div className={style.navbar_link}><Link to='/signup'>Sign Up</Link></div>}
-                    {isAuth && <div className={style.navbar_logout} onClick={() => dispatch(logout())}>Log out</div>}
+                    {isAuth &&
+                        <div className={style.navbar_user}>
+                            <div>{userId} </div>
+                            <div className={style.navbar_logout} onClick={() => dispatch(logout())}> Logout</div>
+                        </div>
+                    }
                 </div>
             </div>
 

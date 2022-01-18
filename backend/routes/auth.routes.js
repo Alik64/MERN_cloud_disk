@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken") // npm i jsonwebtoken
 const { check, validationResult } = require("express-validator") // npm i express-validator
 const config = require("config")
 const router = new Router()
+const authMiddleware = require('../middleware/auth.middleware')
 
 // Registration
 router.post(
@@ -85,4 +86,29 @@ router.post(
         }
     })
 
-module.exports = router;
+router.get('/auth', authMiddleware,
+    async (req, res) => {
+        try {
+            // find user by token , taken from decoded line 20 authmiddleware
+            const user = await User.findOne({ _id: req.user.id }) // _id => mongo db put _ by default
+            // use of JWT - sign(object we put in token, password, duration )
+            const token = jwt.sign({ id: user.id }, config.get("secretKey"), { expiresIn: "1h" })
+            // return token to client
+            return res.json({
+                token,
+                user: {
+                    id: user.id,
+                    email: user.email,
+                    diskSpace: user.diskSpace,
+                    usedSpace: user.usedSpace,
+                    avatar: user.avatar
+                }
+            })
+        } catch (e) {
+            console.log(e)
+            res.send({ message: "Server error" })
+        }
+    })
+
+
+module.exports = router
