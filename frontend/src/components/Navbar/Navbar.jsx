@@ -2,7 +2,13 @@ import React from 'react'
 import style from './Navbar.module.css'
 import Logo from '../../assets/images/cloud-cd-logo.png'
 import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { logout } from '../../redux/userReducer'
+
+
 export default function Navbar() {
+    const isAuth = useSelector(state => state.user.isAuth)
+    const dispatch = useDispatch()
     return (
         <div className={style.navbar}>
             <div className={style.navbar_container}>
@@ -13,8 +19,9 @@ export default function Navbar() {
 
                 <div className={style.navbar_item}>
 
-                    <div className={style.navbar_link}><Link to='/login'>SignIn</Link></div>
-                    <div className={style.navbar_link}><Link to='/signup'>SignUp</Link></div>
+                    {!isAuth && <div className={style.navbar_link}><Link to='/login'>Sign In</Link></div>}
+                    {!isAuth && <div className={style.navbar_link}><Link to='/signup'>Sign Up</Link></div>}
+                    {isAuth && <div className={style.navbar_logout} onClick={() => dispatch(logout())}>Log out</div>}
                 </div>
             </div>
 
