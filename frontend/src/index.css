@@ -1,3 +1,7 @@
+:root {
+  --green: #7ed957;
+  --blue: #38b6ff;
+}
 *,
 ::before,
 ::after {

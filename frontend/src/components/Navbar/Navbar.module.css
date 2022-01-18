@@ -23,10 +23,10 @@ h2 {
   font-size: 18px;
 }
 .spanGreen {
-  color: #7ed957;
+  color: var(--green);
 }
 .spanBlue {
-  color: #38b6ff;
+  color: var(--blue);
 }
 
 @media screen and (max-width: 450px) {
