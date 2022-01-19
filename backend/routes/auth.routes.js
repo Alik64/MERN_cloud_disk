@@ -6,6 +6,10 @@ const { check, validationResult } = require("express-validator") // npm i expres
 const config = require("config")
 const router = new Router()
 const authMiddleware = require('../middleware/auth.middleware')
+const fileService = require('../services/fileService')
+const File = require('../models/File')
+
+
 
 // Registration
 router.post(
@@ -39,7 +43,8 @@ router.post(
 
             // Save new user in DB
             await user.save()
-
+            // Create a folder for this user in DB
+            await fileService.createDir(new File({ user: user.id, name: '' }))
             // Return ok message 
             return res.json({ message: "User was created" })
 

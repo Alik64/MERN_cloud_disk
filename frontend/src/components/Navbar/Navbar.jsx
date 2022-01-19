@@ -9,7 +9,7 @@ import { logout } from '../../redux/userReducer'
 export default function Navbar() {
     const isAuth = useSelector(state => state.user.isAuth)
     const userId = useSelector(state => state.user.currentUser.email)
-    console.log(userId)
+
     const dispatch = useDispatch()
     return (
         <div className={style.navbar}>

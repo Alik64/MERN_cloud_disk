@@ -3,16 +3,20 @@ const mongoose = require('mongoose')
 const config = require('config')
 require('dotenv').config()
 const authRouter = require("./routes/auth.routes")
+const fileRouter = require("./routes/file.routes")
 const app = express()
 const PORT = config.get('serverPort')
 const corsMiddleware = require('./middleware/cors.middleware')
 
+// Allow CORS
 app.use(corsMiddleware)
 // to parse JSON 
 app.use(express.json())
-// use (url , router)
+
+// Routes => app.use(url , router)
 app.use("/api/auth", authRouter)
-// cors
+app.use("/api/files", fileRouter)
+
 
 
 

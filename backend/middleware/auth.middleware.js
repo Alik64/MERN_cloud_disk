@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken')
 const config = require('config')
 
 module.exports = (req, res, next) => {
-    //ifnmethod is OPTIN return next middleware
+    //ifnmethod is OPTION return next middleware
     if (req.method === 'OPTIONS') {
         return next()
     }
