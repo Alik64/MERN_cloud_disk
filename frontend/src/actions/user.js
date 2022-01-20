@@ -46,6 +46,7 @@ export const auth = () => {
             localStorage.setItem('token', response.data.token)
 
         } catch (e) {
+            dispatch(toggleIsFetching(false))
             alert(e.response.data.message)
             localStorage.removeItem('token')
         }

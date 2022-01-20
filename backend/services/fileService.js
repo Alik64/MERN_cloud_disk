@@ -1,9 +1,11 @@
-const fs = require('fs')
+const fs = require('fs') // module to work with file system
 const File = require('../models/File')
 const config = require('config')
 
+
 class FileService {
 
+    // Creation of folders
     createDir(file) {
         const filePath = `${config.get('filePath')}/${file.user}/${file.path}`
         return new Promise(((resolve, reject) => {
