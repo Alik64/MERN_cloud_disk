@@ -4,13 +4,16 @@ import Logo from '../../assets/images/cloud-cd-logo.png'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { logout } from '../../redux/userReducer'
+import Preloader from '../Preloader/Preloader'
 
 
 export default function Navbar() {
     const isAuth = useSelector(state => state.user.isAuth)
+    const isFetching = useSelector(state => state.user.isFetching)
     const userId = useSelector(state => state.user.currentUser.email)
-
     const dispatch = useDispatch()
+
+    if (isFetching && localStorage.getItem("token")) return <Preloader />
     return (
         <div className={style.navbar}>
             <div className={style.navbar_container}>

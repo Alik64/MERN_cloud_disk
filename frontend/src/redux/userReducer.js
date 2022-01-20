@@ -1,9 +1,11 @@
-const SET_USER = "SET_USER"
-const LOGOUT = "LOGOUT"
+const SET_USER = "userReducer_SET_USER"
+const LOGOUT = "userReducer_LOGOUT"
+const TOGGLE_IS_FETCHING = "userReducer_TOGGLE_IS_FETCHING"
 
 const initialState = {
     currentUser: {},
-    isAuth: false
+    isAuth: false,
+    isFetching: true
 }
 
 export default function userReducer(state = initialState, action) {
@@ -13,15 +15,20 @@ export default function userReducer(state = initialState, action) {
             return {
                 ...state,
                 currentUser: action.payload,
-                isAuth: true
+                isAuth: true,
+                isFetching: false
             }
         case LOGOUT:
             localStorage.removeItem('token')
             return {
                 ...state,
                 currentUser: {},
-                isAuth: false
+                isAuth: false,
+                isFetching: false
             }
+        case TOGGLE_IS_FETCHING: {
+            return { ...state, isFetching: action.payload };
+        }
         default:
             return state
     }
@@ -31,3 +38,7 @@ export default function userReducer(state = initialState, action) {
 //Action creator
 export const setUser = user => ({ type: SET_USER, payload: user })
 export const logout = () => ({ type: LOGOUT })
+export const toggleIsFetching = (isFetching) => ({
+    type: TOGGLE_IS_FETCHING,
+    payload: isFetching
+});
