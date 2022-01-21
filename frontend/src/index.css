@@ -35,3 +35,8 @@ code {
   background: var(--green);
   color: #000;
 }
+
+.wrapper {
+  margin: 0 auto;
+  max-width: 1200px;
+}

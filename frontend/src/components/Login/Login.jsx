@@ -5,8 +5,7 @@ import Input from '../../utils/Input/Input'
 import { login } from '../../actions/user'
 import { useDispatch, useSelector } from 'react-redux'
 import Preloader from '../Preloader/Preloader'
-import { useEffect } from 'react'
-import { toggleIsFetching } from '../../redux/userReducer'
+
 
 
 export default function Login() {

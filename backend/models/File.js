@@ -5,6 +5,8 @@ const File = new Schema({
     type: { type: String, required: true },
     accessLink: { type: String },
     size: { type: Number, default: 0 },
+    date: { type: Date, default: Date.now() },
+
     path: { type: String, default: '' },
     user: { type: Schema.Types.ObjectId, ref: 'User' }, // reference to User who add a file
     parent: { type: Schema.Types.ObjectId, ref: 'File' },// ref - Folder in which we are

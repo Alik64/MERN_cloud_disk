@@ -25,3 +25,12 @@
   grid-column-start: 6;
   justify-self: center;
 }
+@media screen and (max-width: 768px) {
+  .File_date,
+  .File_size {
+    font-size: 12px;
+  }
+  .File_name {
+    margin-left: 5px;
+  }
+}

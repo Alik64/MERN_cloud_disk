@@ -28,28 +28,28 @@ function App() {
     <BrowserRouter>
 
       <Navbar />
+      <div className="wrapper">
+        {
+          !isAuth ?
+            <Routes>
+              <Route path="/signup" element={<Registration />} />
+              <Route path="/login" element={<Login />} />
+              <Route
+                path="*"
+                element={<Navigate to="/login" />}
+              />
+            </Routes>
+            :
+            <Routes>
+              <Route path="/" element={<Disk />} />
+              <Route
+                path="*"
+                element={<Navigate to="/" />}
+              />
+            </Routes>
+        }
 
-      {
-        !isAuth ?
-          <Routes>
-            <Route path="/signup" element={<Registration />} />
-            <Route path="/login" element={<Login />} />
-            <Route
-              path="*"
-              element={<Navigate to="/login" />}
-            />
-          </Routes>
-          :
-          <Routes>
-            <Route path="/" element={<Disk />} />
-            <Route
-              path="*"
-              element={<Navigate to="/" />}
-            />
-          </Routes>
-      }
-
-
+      </div>
     </BrowserRouter>
   );
 }
