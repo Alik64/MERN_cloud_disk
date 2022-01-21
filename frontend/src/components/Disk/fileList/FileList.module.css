@@ -1,0 +1,23 @@
+.fileList {
+  margin: 20px 0;
+}
+.fileList_header {
+  border-radius: 5px;
+  margin: 15px;
+  padding: 15px 0;
+  display: grid;
+  grid-template-columns: 1fr 4fr repeat(4, 1fr);
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.fileList_name {
+  grid-column-start: 2;
+}
+.fileList_date {
+  grid-column-start: 5;
+  justify-self: center;
+}
+.fileList_size {
+  grid-column-start: 6;
+  justify-self: center;
+}

@@ -27,7 +27,7 @@ export default function Login() {
                     <Input value={email} setValue={setEmail} type="email" placeholder="E-mail" />
                     <Input value={password} setValue={setPassword} type="password" placeholder="Password" />
                 </form>
-                <button className={style.login_btn} onClick={() => dispatch(login(email, password))}>Enter</button>
+                <button className='btn' onClick={() => dispatch(login(email, password))}>Enter</button>
 
             </div>
 

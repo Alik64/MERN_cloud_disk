@@ -14,7 +14,7 @@ export default function Registration() {
                 <Input value={email} setValue={setEmail} type="email" placeholder="E-mail" />
                 <Input value={password} setValue={setPassword} type="password" placeholder="Password" />
             </form>
-            <button onClick={() => registration(email, password)} className={style.registration_btn}>Let's go!</button>
+            <button onClick={() => registration(email, password)} className='btn'>Let's go!</button>
 
         </div>
     )

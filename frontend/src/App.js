@@ -1,13 +1,11 @@
 import Navbar from "./components/Navbar/Navbar";
-import './App.css'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import Registration from "./components/Registration/Registration";
 import Login from "./components/Login/Login";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { auth } from "./actions/user";
-import { toggleIsFetching } from "./redux/userReducer";
-import Preloader from "./components/Preloader/Preloader";
+import Disk from "./components/Disk/Disk";
 
 
 
@@ -32,10 +30,24 @@ function App() {
       <Navbar />
 
       {
-        !isAuth && <Routes>
-          <Route path="/signup" element={<Registration />} />
-          <Route path="/login" element={<Login />} />
-        </Routes>}
+        !isAuth ?
+          <Routes>
+            <Route path="/signup" element={<Registration />} />
+            <Route path="/login" element={<Login />} />
+            <Route
+              path="*"
+              element={<Navigate to="/login" />}
+            />
+          </Routes>
+          :
+          <Routes>
+            <Route path="/" element={<Disk />} />
+            <Route
+              path="*"
+              element={<Navigate to="/" />}
+            />
+          </Routes>
+      }
 
 
     </BrowserRouter>

@@ -1,0 +1,13 @@
+.disk {
+  margin: 20px;
+}
+.disk_btns {
+  margin-left: 15px;
+}
+
+@media screen and (max-width: 450px) {
+  .disk_btns {
+    display: flex;
+    justify-content: space-between;
+  }
+}
