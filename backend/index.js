@@ -2,12 +2,15 @@ const express = require('express')
 const mongoose = require('mongoose')
 const config = require('config')
 require('dotenv').config()
+const fileUpload = require('express-fileupload') // npm i express-fileupload
 const authRouter = require("./routes/auth.routes")
 const fileRouter = require("./routes/file.routes")
 const app = express()
 const PORT = config.get('serverPort')
 const corsMiddleware = require('./middleware/cors.middleware')
 
+// Upload files
+app.use(fileUpload({}))
 // Allow CORS
 app.use(corsMiddleware)
 // to parse JSON 
