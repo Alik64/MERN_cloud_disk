@@ -2,9 +2,34 @@
   margin: 20px;
 }
 .disk_btns {
+  display: flex;
+  align-items: center;
   margin-left: 15px;
 }
+.disk_newFolder,
+.disk_back {
+  margin: 4px 10px 0 0;
+}
+label {
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin-top: 10px;
+  background: var(--blue);
+  color: #fff;
+  font-size: 14px;
+  font-family: Arial, Helvetica, sans-serif;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
 
+label:hover {
+  background: var(--green);
+  color: #000;
+}
+
+input {
+  display: none;
+}
 @media screen and (max-width: 450px) {
   .disk_btns {
     display: flex;
