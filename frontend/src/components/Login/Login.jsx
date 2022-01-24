@@ -21,11 +21,14 @@ export default function Login() {
         <>
 
             <div className={style.login}>
+
                 <div className={style.login_title}>Sign In</div>
-                <form>
-                    <Input value={email} setValue={setEmail} type="email" placeholder="E-mail" />
-                    <Input value={password} setValue={setPassword} type="password" placeholder="Password" />
+                <form >
+                    <Input value={email} setValue={setEmail} type="email" placeholder="E-mail" autoComplete="username" />
+                    <Input value={password} setValue={setPassword} type="password" placeholder="Password" autoComplete="current-password" />
                 </form>
+
+
                 <button className='btn' onClick={() => dispatch(login(email, password))}>Enter</button>
 
             </div>

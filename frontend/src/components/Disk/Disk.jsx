@@ -36,7 +36,7 @@ export default function Disk() {
                 <button className={`${style.disk_newFolder} btn`} onClick={() => popUpHandler()}>New folder</button>
                 <div className={style.disk_upload}>
                     <label htmlFor="diskUploadInput" className={style.disk_uploadLabel}>Upload file</label>
-                    <input type="file" id='diskUploadInput' />
+                    <input type="file" id='diskUploadInput' className={style.diskUploadInput} />
                 </div>
             </div>
             <FileList />

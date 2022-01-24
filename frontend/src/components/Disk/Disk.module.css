@@ -26,10 +26,10 @@ label:hover {
   background: var(--green);
   color: #000;
 }
-
-input {
+.diskUploadInput {
   display: none;
 }
+
 @media screen and (max-width: 450px) {
   .disk_btns {
     display: flex;

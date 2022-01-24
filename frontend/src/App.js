@@ -9,9 +9,9 @@ import Disk from "./components/Disk/Disk";
 
 
 
+
 function App() {
   const isAuth = useSelector(state => state.user.isAuth)
-  const isFetching = useSelector(state => state.user.isFetching)
 
   const dispatch = useDispatch()
 
@@ -29,6 +29,7 @@ function App() {
 
       <Navbar />
       <div className="wrapper">
+
         {
           !isAuth ?
             <Routes>
