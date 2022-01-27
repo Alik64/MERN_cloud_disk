@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getFiles } from '../../actions/file'
-import { popFromStack, pushToStack, setCurrentDir, togglePopUp } from '../../redux/fileReducer'
-import style from './Disk.module.css'
+import { getFiles, uploadFile } from '../../actions/file'
+import { popFromStack, setCurrentDir, togglePopUp } from '../../redux/fileReducer'
+import './Disk.css'
 import FileList from './fileList/FileList'
 import PopUp from './PopUp/PopUp'
 
@@ -11,6 +11,7 @@ export default function Disk() {
     const currentDir = useSelector(state => state.files.currentDir)
     const display = useSelector(state => state.files.display)
     const folderPathStack = useSelector(state => state.files.folderPathStack)
+    const [dragEnter, setDragEnter] = useState(false)
 
     const dispatch = useDispatch()
     const popUpHandler = () => {
@@ -22,24 +23,49 @@ export default function Disk() {
         dispatch(popFromStack(index))
         dispatch(setCurrentDir(folderPathStack[folderPathStack.length - 1]))
     }
+    const fileUploadHandler = (e) => {
+        const files = [...e.target.files]
+        files.forEach(file => dispatch(uploadFile(file, currentDir)))
+    }
+    const onDragEnterHandler = (event) => {
+        event.preventDefault()
+        event.stopPropagation()
+        setDragEnter(true)
+    }
+    const onDragLeaveHandler = (event) => {
+        event.preventDefault()
+        event.stopPropagation()
+        setDragEnter(false)
+    }
+
+
+
 
     useEffect(() => {
         dispatch(getFiles(currentDir))
 
     }, [currentDir])
-    return (
+    return (!dragEnter ?
 
-        <div className={style.disk}>
+        <div className="disk" onDragEnter={onDragEnterHandler} onDragLeave={onDragLeaveHandler} onDragOver={onDragEnterHandler}>
             <PopUp display={display} />
-            <div className={style.disk_btns}>
-                {currentDir && <button className={`${style.disk_back} btn`} onClick={() => backNavHandler()}>Back</button>}
-                <button className={`${style.disk_newFolder} btn`} onClick={() => popUpHandler()}>New folder</button>
-                <div className={style.disk_upload}>
-                    <label htmlFor="diskUploadInput" className={style.disk_uploadLabel}>Upload file</label>
-                    <input type="file" id='diskUploadInput' className={style.diskUploadInput} />
+            <div className="disk_btns">
+                {currentDir && <button className="disk_back btn" onClick={backNavHandler}>Back</button>}
+                <button className="disk_newFolder btn" onClick={popUpHandler}>New folder</button>
+                <div className="disk_upload">
+                    <label htmlFor="diskUploadInput" className="disk_uploadLabel">Upload file</label>
+                    <input
+                        onChange={(e) => fileUploadHandler(e)} multiple={true}
+                        type="file" id='diskUploadInput' className="diskUploadInput" />
                 </div>
             </div>
             <FileList />
         </div>
+        :
+        <div className='disk_dropArea'
+            onDragEnter={onDragEnterHandler}
+            onDragLeave={onDragLeaveHandler} onDragOver={onDragEnterHandler}>
+            <h3 >Drop your file here ...</h3>
+        </div >
     )
 }

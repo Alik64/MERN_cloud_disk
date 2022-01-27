@@ -35,7 +35,7 @@ export default function fileReducer(state = initialState, action) {
 
 export const setFiles = files => ({ type: SET_FILES, payload: files })
 export const setCurrentDir = dir => ({ type: SET_CURRENT_DIR, payload: dir })
-export const addFolder = folder => ({ type: ADD_FOLDER, payload: folder })
+export const addFile = file => ({ type: ADD_FOLDER, payload: file })
 export const togglePopUp = (display) => ({ type: POP_UP_TOGGLE, payload: display })
 export const pushToStack = (folder) => ({ type: PUSH_TO_STACK, payload: folder })
 export const popFromStack = (index) => ({ type: POP_FROM_STACK, payload: index })

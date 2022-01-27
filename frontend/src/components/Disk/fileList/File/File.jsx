@@ -26,7 +26,8 @@ export default function File({ file }) {
 
             <div className='File_name'>{file.name}</div>
             <div className='File_date'>{file.date.slice(0, 10)}</div>
-            <div className='File_size'>{file.size} Gb</div>
+            <div className='File_size'>{file.size} </div>
+            {/* <div className='File_size'>{parseFloat(file.size / 1048576).toFixed(2)} Mb</div> */}
         </div>
     )
 }
