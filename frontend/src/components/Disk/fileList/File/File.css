@@ -5,6 +5,7 @@
   display: grid;
   align-items: center;
   grid-template-columns: 1fr 4fr repeat(4, 1fr);
+
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   border-radius: 5px;
 }
@@ -13,6 +14,9 @@
 }
 .File_img {
   margin-left: 5px;
+}
+.File_ico {
+  width: 50px;
 }
 .File_name {
   grid-column-start: 2;
@@ -24,6 +28,21 @@
 .File_size {
   grid-column-start: 6;
   justify-self: center;
+}
+.File_download,
+.File_delete {
+  display: none;
+}
+
+.File:hover .File_download {
+  grid-column-start: 3;
+  display: block;
+  cursor: pointer;
+}
+.File:hover .File_delete {
+  grid-column-start: 4;
+  display: block;
+  cursor: pointer;
 }
 @media screen and (max-width: 768px) {
   .File_date,
