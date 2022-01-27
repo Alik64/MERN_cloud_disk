@@ -37,7 +37,15 @@ export default function Disk() {
         event.stopPropagation()
         setDragEnter(false)
     }
+    const onDropHandler = (e) => {
+        e.preventDefault()
+        e.stopPropagation()
+        console.log(e)
+        const files = [...e.dataTransfer.files]
+        files.forEach(file => dispatch(uploadFile(file, currentDir)))
+        setDragEnter(false)
 
+    }
 
 
 
@@ -63,7 +71,7 @@ export default function Disk() {
         </div>
         :
         <div className='disk_dropArea'
-            onDragEnter={onDragEnterHandler}
+            onDrop={onDropHandler}
             onDragLeave={onDragLeaveHandler} onDragOver={onDragEnterHandler}>
             <h3 >Drop your file here ...</h3>
         </div >

@@ -1,13 +1,18 @@
 import axios from 'axios'
 import { setFiles, addFile } from "../redux/fileReducer";
 
+
+
+export const instanceAxios = axios.create({
+    baseURL: 'http://localhost:5000/api/',
+    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+})
+
+
 export function getFiles(dirId) {
     return async dispatch => {
         try {
-            const response = await axios.get(`http://localhost:5000/api/files${dirId ? '?parent=' + dirId : ''}`, {
-                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-            })
-
+            const response = await instanceAxios.get(`files${dirId ? '?parent=' + dirId : ''}`)
             dispatch(setFiles(response.data))
         } catch (e) {
             alert(e.response.data.message)
@@ -18,12 +23,10 @@ export function getFiles(dirId) {
 export function createFolder(parentId, name) {
     return async dispatch => {
         try {
-            const response = await axios.post(`http://localhost:5000/api/files`, {
+            const response = await instanceAxios.post(`files`, {
                 name,
                 parent: parentId,
                 type: 'dir'
-            }, {
-                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             })
 
             dispatch(addFile(response.data))
@@ -40,8 +43,8 @@ export function uploadFile(file, dirId) {
             if (dirId) {
                 formData.append('parent', dirId)
             }
-            const response = await axios.post(`http://localhost:5000/api/files/upload`, formData, {
-                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+
+            const response = await instanceAxios.post(`files/upload`, formData, {
                 onUploadProgress: progressEvent => {
                     const totalLength = progressEvent.lengthComputable ? progressEvent.total : progressEvent.target.getResponseHeader('content-length') || progressEvent.target.getResponseHeader('x-decompressed-content-length');
                     console.log('total', totalLength)
