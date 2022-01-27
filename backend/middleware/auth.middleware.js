@@ -16,8 +16,8 @@ module.exports = (req, res, next) => {
             return res.status(401).json({ message: 'Auth error' })
         }
         // decode token verify(token, token from config)
-        const decoded = jwt.verify(token, config.get('secretKey'))
-        req.user = decoded
+        const decoded = jwt.verify(token, config.get('secretKey')) // here we get user from token
+        req.user = decoded // here we get user from token => fileControler.js
         next()
     } catch (e) {
         return res.status(401).json({ message: `${e}` })
