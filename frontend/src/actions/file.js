@@ -78,3 +78,14 @@ export async function downloadFile(file) {
         link.remove()
     }
 }
+
+export function deleteFile(file) {
+    return async dispatch => {
+        try {
+            const response = await instanceAxios.delete(`files?id=${file._id}`)
+            dispatch(addFile(response.data))
+        } catch (error) {
+            alert(error?.response?.data?.message)
+        }
+    }
+}
