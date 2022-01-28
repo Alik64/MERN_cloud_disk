@@ -23,7 +23,8 @@ export default function fileReducer(state = initialState, action) {
         case ADD_FILE:
             return { ...state, files: [...state.files, action.payload] }
         case DELETE_FILE:
-            return { ...state, files: [...state.files, action.payload] }
+
+            return { ...state, files: [...state.files.filter(file => file._id !== action.payload)] }
         case POP_UP_TOGGLE:
             return { ...state, display: action.payload }
         case PUSH_TO_STACK:
@@ -39,7 +40,7 @@ export default function fileReducer(state = initialState, action) {
 export const setFiles = files => ({ type: SET_FILES, payload: files })
 export const setCurrentDir = dir => ({ type: SET_CURRENT_DIR, payload: dir })
 export const addFile = file => ({ type: ADD_FILE, payload: file })
-export const deleteFile = file => ({ type: DELETE_FILE, payload: file })
+export const deleteFileAction = (fileID) => ({ type: DELETE_FILE, payload: fileID })
 export const togglePopUp = (display) => ({ type: POP_UP_TOGGLE, payload: display })
 export const pushToStack = (folder) => ({ type: PUSH_TO_STACK, payload: folder })
 export const popFromStack = (index) => ({ type: POP_FROM_STACK, payload: index })
