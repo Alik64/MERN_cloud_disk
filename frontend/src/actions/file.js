@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { setFiles, addFile } from "../redux/fileReducer";
+import { setFiles, addFile, deleteFileAction } from "../redux/fileReducer";
 
 
 
@@ -83,7 +83,8 @@ export function deleteFile(file) {
     return async dispatch => {
         try {
             const response = await instanceAxios.delete(`files?id=${file._id}`)
-            dispatch(addFile(response.data))
+            dispatch(deleteFileAction(file._id)) // put this id in file reducer
+            alert(response.data.message)
         } catch (error) {
             alert(error?.response?.data?.message)
         }

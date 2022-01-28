@@ -6,7 +6,7 @@ import download from '../../../../assets/images/download.png'
 import docs from '../../../../assets/images/file.svg'
 import { useDispatch, useSelector } from 'react-redux'
 import { pushToStack, setCurrentDir } from '../../../../redux/fileReducer'
-import { downloadFile } from '../../../../actions/file'
+import { deleteFile, downloadFile } from '../../../../actions/file'
 
 export default function File({ file }) {
     const dispatch = useDispatch()
@@ -23,6 +23,12 @@ export default function File({ file }) {
         e.stopPropagation()
         downloadFile(file)
     }
+
+    const deleteFileHandler = (e) => {
+        e.stopPropagation()
+        console.log(file)
+        dispatch(deleteFile(file))
+    }
     return (
         <div className='File' onClick={() => openFolderHandler(file)}>
             <img
@@ -34,7 +40,8 @@ export default function File({ file }) {
 
             {file.type !== 'dir' && <img src={download} alt="download" title='Download'
                 className='File_download File_ico' onClick={(e) => downloadHandler(e)} />}
-            <img src={garbage} alt="delete" title='Delete' className='File_delete File_ico' />
+
+            <img src={garbage} alt="delete" title='Delete' className='File_delete File_ico' onClick={(e) => deleteFileHandler(e)} />
             <div className='File_date'>{file.date.slice(0, 10)}</div>
             <div className='File_size'>{file.size} </div>
 

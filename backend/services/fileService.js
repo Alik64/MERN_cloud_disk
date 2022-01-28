@@ -21,6 +21,9 @@ class FileService {
             }
         }))
     }
+    getPath(file) {
+        return config.get('filePath') + '/' + file.user + '/' + file.path
+    }
     deleteFile(file) {
         const path = this.getPath(file)
         if (file.type === 'dir') {
@@ -32,9 +35,7 @@ class FileService {
         }
     }
 
-    getPath(file) {
-        return config.get('filePath') + '/' + file.user + '/' + file.path
-    }
+
 }
 
 
