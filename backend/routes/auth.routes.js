@@ -71,8 +71,8 @@ router.post(
             if (!isPassValid) {
                 return res.status(400).json({ message: "Invalid password" })
             }
-            // use of JWT - sign(object we put in token, password, duration )
-            const token = jwt.sign({ id: user.id }, config.get("secretKey"), { expiresIn: "1d" })
+            // use of JWT - sign(object we put in token, password, duration // expiresIn: "1d")
+            const token = jwt.sign({ id: user.id }, config.get("secretKey"), {})
             // return token to client
             return res.json({
                 token,
