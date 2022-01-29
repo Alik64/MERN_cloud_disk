@@ -35,7 +35,7 @@
 }
 
 .logo {
-  max-width: 100px;
+  max-width: 150px;
 }
 h2 {
   font-size: 18px;
@@ -53,5 +53,8 @@ h2 {
   }
   .navbar_link {
     font-size: 13px;
+  }
+  .logo {
+    max-width: 130px;
   }
 }
