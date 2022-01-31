@@ -24,7 +24,7 @@ export default function Uploader() {
     return <div className='Uploader'>
         <div className='Uploader_header'>
             <div>Downloads</div>
-            <div className='Uploader_close' onClick={() => closeHandler()}>X</div>
+            <button className='Uploader_close' onClick={() => closeHandler()}>X</button>
         </div>
         <div className='Uploader_files'>
             {files.map(file => < UploadFile key={uuidv4()} file={file} />)}
