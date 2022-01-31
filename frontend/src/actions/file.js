@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { setFiles, addFile, deleteFileAction } from "../redux/fileReducer";
+import { addUploadFile } from '../redux/uploadReducer';
 
 
 
@@ -38,11 +39,16 @@ export function createFolder(parentId, name) {
 export function uploadFile(file, dirId) {
     return async dispatch => {
         try {
+
+            console.log(file)
             const formData = new FormData()
             formData.append('file', file)
             if (dirId) {
                 formData.append('parent', dirId)
             }
+
+            const uploadFile = { name: file.name, progress: 0, id: Date.now() }
+            dispatch(addUploadFile(uploadFile))
 
             const response = await instanceAxios.post(`files/upload`, formData, {
                 onUploadProgress: progressEvent => {

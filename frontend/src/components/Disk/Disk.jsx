@@ -30,7 +30,7 @@ export default function Disk() {
 
         const files = [...e.target.files]
         files.forEach(file => dispatch(uploadFile(file, currentDir)))
-        // dispatch(setToggleOpen(true))
+        dispatch(setToggleOpen(true))
     }
     const onDragEnterHandler = (event) => {
         event.preventDefault()
@@ -50,7 +50,7 @@ export default function Disk() {
 
         files.forEach(file => dispatch(uploadFile(file, currentDir)))
         setDragEnter(false)
-        // dispatch(setToggleOpen(true))
+        dispatch(setToggleOpen(true))
 
     }
 
