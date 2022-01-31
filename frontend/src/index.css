@@ -2,6 +2,7 @@
   --red: #f00;
   --green: #7ed957;
   --blue: #38b6ff;
+  --shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 *,
 ::before,

@@ -4,6 +4,7 @@ import { getFiles, uploadFile } from '../../actions/file'
 import { popFromStack, setCurrentDir, togglePopUp } from '../../redux/fileReducer'
 import './Disk.css'
 import FileList from './fileList/FileList'
+import Uploader from './fileList/Uploader/Uploader'
 import PopUp from './PopUp/PopUp'
 
 export default function Disk() {
@@ -68,6 +69,7 @@ export default function Disk() {
                 </div>
             </div>
             <FileList />
+            <Uploader />
         </div>
         :
         <div className='disk_dropArea'
