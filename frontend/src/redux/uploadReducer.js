@@ -5,8 +5,7 @@ const SET_PROGRESS_BAR = "upoadReducer_SET_PROGRESS_BAR"
 
 const initialState = {
     files: [],
-    isOpen: true,
-    progress: 0
+    isOpen: false
 }
 
 export default function uploadReducer(state = initialState, action) {
@@ -19,7 +18,13 @@ export default function uploadReducer(state = initialState, action) {
         case REMOVE_UPLOAD_FILE:
             return { ...state, files: [...state.files.filter(file => file.id !== action.payload)] }
         case SET_PROGRESS_BAR:
-            return { ...state, progress: action.payload }
+            return {
+                ...state,
+                files: [...state.files.map(file => file.id == action.payload.id
+                    ? { ...file, progress: action.payload.progress }
+                    : { ...file }
+                )]
+            }
         default:
             return state
     }
@@ -30,5 +35,5 @@ export default function uploadReducer(state = initialState, action) {
 export const setToggleOpen = bool => ({ type: TOOGLE_OPEN, payload: bool })
 export const addUploadFile = file => ({ type: ADD_UPLOAD_FILE, payload: file })
 export const removeUploadFile = fileId => ({ type: REMOVE_UPLOAD_FILE, payload: fileId })
-export const setProgressBar = value => ({ type: TOOGLE_OPEN, payload: value })
+export const setProgressBar = file => ({ type: SET_PROGRESS_BAR, payload: file })
 

@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { setFiles, addFile, deleteFileAction } from "../redux/fileReducer";
-import { addUploadFile } from '../redux/uploadReducer';
+import { addUploadFile, setProgressBar } from '../redux/uploadReducer';
+import { v4 as uuidv4 } from 'uuid';
 
 
 
@@ -47,7 +48,7 @@ export function uploadFile(file, dirId) {
                 formData.append('parent', dirId)
             }
 
-            const uploadFile = { name: file.name, progress: 0, id: Date.now() }
+            const uploadFile = { name: file.name, progress: 0, id: uuidv4() }
             dispatch(addUploadFile(uploadFile))
 
             const response = await instanceAxios.post(`files/upload`, formData, {
@@ -55,8 +56,8 @@ export function uploadFile(file, dirId) {
                     const totalLength = progressEvent.lengthComputable ? progressEvent.total : progressEvent.target.getResponseHeader('content-length') || progressEvent.target.getResponseHeader('x-decompressed-content-length');
                     console.log('total', totalLength)
                     if (totalLength) {
-                        let progress = Math.round((progressEvent.loaded * 100) / totalLength)
-                        console.log(progress)
+                        uploadFile.progress = Math.round((progressEvent.loaded * 100) / totalLength)
+                        dispatch(setProgressBar(uploadFile))
                     }
                 }
             });
