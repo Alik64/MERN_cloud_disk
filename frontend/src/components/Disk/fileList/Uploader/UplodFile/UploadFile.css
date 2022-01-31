@@ -1,0 +1,23 @@
+.UploadFile {
+  box-shadow: var(--shadow);
+  margin: 5px 0;
+  padding: 5px;
+}
+.UploadFile_header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 5px 5px;
+}
+.UploadFile_content {
+  background-color: var(--green);
+  border-radius: 5px;
+  padding-right: 5px;
+  display: flex;
+  justify-content: flex-end;
+}
+.UploadFile_close {
+  cursor: pointer;
+}
+.UploadFile_close:hover {
+  color: var(--red);
+}

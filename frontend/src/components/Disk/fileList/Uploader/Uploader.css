@@ -10,7 +10,7 @@
 }
 .Uploader_header {
   border-radius: 20px 20px 0 0;
-  padding: 30px;
+  padding: 25px;
   display: flex;
   justify-content: space-between;
   background-color: var(--blue);
@@ -19,4 +19,10 @@
   padding: 10px 10px;
   max-height: 220px;
   overflow-y: scroll;
+}
+.Uploader_close {
+  cursor: pointer;
+}
+.Uploader_close:hover {
+  color: var(--red);
 }

@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getFiles, uploadFile } from '../../actions/file'
 import { popFromStack, setCurrentDir, togglePopUp } from '../../redux/fileReducer'
+import { setToggleOpen } from '../../redux/uploadReducer'
 import './Disk.css'
 import FileList from './fileList/FileList'
 import Uploader from './fileList/Uploader/Uploader'
 import PopUp from './PopUp/PopUp'
 
 export default function Disk() {
+    const isOpen = useSelector(state => state.uploader.isOpen)
 
     const currentDir = useSelector(state => state.files.currentDir)
     const display = useSelector(state => state.files.display)
@@ -25,8 +27,10 @@ export default function Disk() {
         dispatch(setCurrentDir(folderPathStack[folderPathStack.length - 1]))
     }
     const fileUploadHandler = (e) => {
+
         const files = [...e.target.files]
         files.forEach(file => dispatch(uploadFile(file, currentDir)))
+        // dispatch(setToggleOpen(true))
     }
     const onDragEnterHandler = (event) => {
         event.preventDefault()
@@ -43,8 +47,10 @@ export default function Disk() {
         e.stopPropagation()
         console.log(e)
         const files = [...e.dataTransfer.files]
+
         files.forEach(file => dispatch(uploadFile(file, currentDir)))
         setDragEnter(false)
+        // dispatch(setToggleOpen(true))
 
     }
 
@@ -69,7 +75,7 @@ export default function Disk() {
                 </div>
             </div>
             <FileList />
-            <Uploader />
+            {isOpen && <Uploader />}
         </div>
         :
         <div className='disk_dropArea'
