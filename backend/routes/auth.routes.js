@@ -72,7 +72,7 @@ router.post(
                 return res.status(400).json({ message: "Invalid password" })
             }
             // use of JWT - sign(object we put in token, password, duration // expiresIn: "1d")
-            const token = jwt.sign({ id: user.id }, config.get("secretKey"), { expiresIn: "1h" })
+            const token = jwt.sign({ id: user.id }, config.get("secretKey"), { expiresIn: "30d" })
             // return token to client
             return res.json({
                 token,
@@ -97,7 +97,7 @@ router.get('/auth', authMiddleware,
             // find user by token , taken from decoded line 20 authmiddleware
             const user = await User.findOne({ _id: req.user.id }) // _id => mongo db put _ by default
             // use of JWT - sign(object we put in token, password, duration )
-            const token = jwt.sign({ id: user.id }, config.get("secretKey"), { expiresIn: "1h" })
+            const token = jwt.sign({ id: user.id }, config.get("secretKey"), { expiresIn: "30d" })
             // return token to client
             return res.json({
                 token,
