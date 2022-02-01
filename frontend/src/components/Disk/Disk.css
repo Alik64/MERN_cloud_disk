@@ -5,17 +5,19 @@
 .disk_btns {
   display: flex;
   align-items: center;
+  justify-content: flex-start;
   margin-left: 15px;
 }
-.disk_newFolder,
-.disk_back {
-  margin: 4px 10px 0 0;
+.disk_btns > * {
+  margin-right: 10px;
 }
+
 label {
   border: none;
+  display: flex;
+  align-items: center;
   border-radius: 5px;
   padding: 10px 20px;
-  margin-top: 10px;
   background: var(--blue);
   color: #fff;
   font-size: 14px;
@@ -44,6 +46,20 @@ label:hover {
 .disk_dropArea h3 {
   text-align: center;
   font-size: 40px;
+}
+.disk_select {
+  appearance: none;
+  font-size: 14px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  background-color: var(--blue);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+}
+.disk_select:hover {
+  color: #000;
+  background-color: var(--green);
 }
 
 @media screen and (max-width: 450px) {

@@ -1,18 +1,31 @@
 import React from 'react'
+import { TransitionGroup, CSSTransition } from "react-transition-group"
 import { useSelector } from 'react-redux'
 import File from './File/File'
-import style from './FileList.module.css'
+import './FileList.css'
 export default function FileList() {
-    const files = useSelector(state => state.files.files).map(file => <File key={file._id} file={file} />)
+    const files = useSelector(state => state.files.files)
 
     return (
-        <div className={style.fileList}>
-            <div className={style.fileList_header}>
-                <div className={style.fileList_name}>Name</div>
-                <div className={style.fileList_date}>Date</div>
-                <div className={style.fileList_size}>Size</div>
+        <div className="fileList">
+            <div className="fileList_header">
+                <div className="fileList_name">Name</div>
+                <div className="fileList_date">Date</div>
+                <div className="fileList_size">Size</div>
             </div>
-            {files}
+            <TransitionGroup>
+                {files.map(file =>
+                    <CSSTransition
+                        key={file._id}
+                        timeout={500}
+                        classNames={'file'}
+                        exit={false} >
+                        <File file={file} />
+                    </CSSTransition>
+                )}
+
+            </TransitionGroup>
+
         </div>
     )
 }

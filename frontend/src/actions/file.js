@@ -11,10 +11,21 @@ export const instanceAxios = axios.create({
 })
 
 
-export function getFiles(dirId) {
+export function getFiles(dirId, sort) {
     return async dispatch => {
         try {
-            const response = await instanceAxios.get(`files${dirId ? '?parent=' + dirId : ''}`)
+            let url = `files`
+            if (dirId) {
+                url = `files?parent=${dirId}`
+            }
+            if (sort) {
+                url = `files?sort=${sort}`
+            }
+            if (dirId && sort) {
+                url = `files?parent=${dirId}&sort=${sort}`
+            }
+
+            const response = await instanceAxios.get(url)
             dispatch(setFiles(response.data))
         } catch (e) {
             alert(e.response.data.message)
@@ -51,7 +62,7 @@ export function uploadFile(file, dirId) {
             const uploadFile = { name: file.name, progress: 0, id: uuidv4() }
             dispatch(addUploadFile(uploadFile))
 
-            const response = await instanceAxios.post(`files/upload`, formData, {
+            const response = await instanceAxios.post(`files / upload`, formData, {
                 onUploadProgress: progressEvent => {
                     const totalLength = progressEvent.lengthComputable ? progressEvent.total : progressEvent.target.getResponseHeader('content-length') || progressEvent.target.getResponseHeader('x-decompressed-content-length');
                     console.log('total', totalLength)

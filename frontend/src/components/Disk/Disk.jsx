@@ -15,6 +15,7 @@ export default function Disk() {
     const display = useSelector(state => state.files.display)
     const folderPathStack = useSelector(state => state.files.folderPathStack)
     const [dragEnter, setDragEnter] = useState(false)
+    const [sort, setSort] = useState('filter');
 
     const dispatch = useDispatch()
     const popUpHandler = () => {
@@ -57,9 +58,9 @@ export default function Disk() {
 
 
     useEffect(() => {
-        dispatch(getFiles(currentDir))
+        dispatch(getFiles(currentDir, sort))
 
-    }, [currentDir])
+    }, [currentDir, sort])
     return (!dragEnter ?
 
         <div className="disk" onDragEnter={onDragEnterHandler} onDragLeave={onDragLeaveHandler} onDragOver={onDragEnterHandler}>
@@ -73,6 +74,12 @@ export default function Disk() {
                         onChange={(e) => fileUploadHandler(e)} multiple={true}
                         type="file" id='diskUploadInput' className="diskUploadInput" />
                 </div>
+                <select className='disk_select' value={sort} onChange={(e) => setSort(e.target.value)}>
+                    <option value="filter">Filter</option>
+                    <option value="name">Name</option>
+                    <option value="type">Type</option>
+                    <option value="date">Date</option>
+                </select>
             </div>
             <FileList />
             {isOpen && <Uploader />}
