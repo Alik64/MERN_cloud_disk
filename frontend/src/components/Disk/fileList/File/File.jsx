@@ -7,6 +7,7 @@ import docs from '../../../../assets/images/file.svg'
 import { useDispatch, useSelector } from 'react-redux'
 import { pushToStack, setCurrentDir } from '../../../../redux/fileReducer'
 import { deleteFile, downloadFile } from '../../../../actions/file'
+import sizeFormat from '../../../../utils/sizeFormat'
 
 export default function File({ file }) {
     const dispatch = useDispatch()
@@ -43,7 +44,7 @@ export default function File({ file }) {
 
             <img src={garbage} alt="delete" title='Delete' className='File_delete File_ico' onClick={(e) => deleteFileHandler(e)} />
             <div className='File_date'>{file.date.slice(0, 10)}</div>
-            <div className='File_size'>{file.size} </div>
+            <div className='File_size'>{sizeFormat(file.size)} </div>
 
             {/* <div className='File_size'>{parseFloat(file.size / 1048576).toFixed(2)} Mb</div> */}
         </div>

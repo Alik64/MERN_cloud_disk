@@ -78,6 +78,7 @@ class FileController {
                 filePath = parent.path + "/" + file.name
             }
 
+
             // Model of the file that will be saved in DB
             const dbFile = new File({
                 name: file.name,
