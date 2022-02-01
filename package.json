@@ -1,5 +1,8 @@
 {
   "devDependencies": {
     "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "react-transition-group": "^4.4.2"
   }
 }
