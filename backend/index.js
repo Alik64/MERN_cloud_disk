@@ -8,6 +8,7 @@ const fileRouter = require("./routes/file.routes")
 const app = express()
 const PORT = config.get('serverPort')
 const corsMiddleware = require('./middleware/cors.middleware')
+const cors = require("cors")
 
 // Upload files
 app.use(fileUpload({}))
