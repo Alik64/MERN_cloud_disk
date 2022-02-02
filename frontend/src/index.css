@@ -12,11 +12,15 @@
   box-sizing: border-box;
 }
 body {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: var(--fontFamily);
   font-size: 16px;
   width: 100%;
 }
-
+.random {
+  color: #f00;
+  padding: 30px 40px;
+  margin-bottom: 50px;
+}
 .btn {
   border: none;
   border-radius: 5px;

@@ -22,9 +22,11 @@ export const login = (email, password) => {
                 email,
                 password
             })
-            dispatch(toggleIsFetching(false))
-            localStorage.setItem('token', response.data.token)
+
+
             dispatch(setUser(response.data.user))
+            localStorage.setItem('token', response.data.token)
+            dispatch(toggleIsFetching(false))
 
         } catch (e) {
             dispatch(toggleIsFetching(false))
