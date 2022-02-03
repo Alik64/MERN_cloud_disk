@@ -113,3 +113,15 @@ export function deleteFile(file) {
         }
     }
 }
+
+export function searchFile(word) {
+    return async dispatch => {
+        try {
+            const response = await instanceAxios.get(`files/search?search=${word}`)
+            dispatch(setFiles(response.data))
+
+        } catch (error) {
+            alert(error?.response?.data?.message)
+        }
+    }
+}
