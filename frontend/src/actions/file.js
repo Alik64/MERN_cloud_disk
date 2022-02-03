@@ -15,7 +15,7 @@ export const instanceAxios = axios.create({
 export function getFiles(dirId, sort) {
     return async dispatch => {
         try {
-
+            dispatch(toggleIsFetching(true))
             let url = `files`
             if (dirId) {
                 url = `files?parent=${dirId}`
@@ -31,6 +31,8 @@ export function getFiles(dirId, sort) {
             dispatch(setFiles(response.data))
         } catch (e) {
             alert(e.response.data.message)
+        } finally {
+            dispatch(toggleIsFetching(false))
         }
     }
 }

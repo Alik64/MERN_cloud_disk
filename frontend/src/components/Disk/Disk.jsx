@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getFiles, uploadFile } from '../../actions/file'
 import { popFromStack, setCurrentDir, togglePopUp } from '../../redux/fileReducer'
 import { setToggleOpen } from '../../redux/uploadReducer'
+import Preloader from '../Preloader/Preloader'
 import './Disk.css'
 import FileList from './fileList/FileList'
 import Uploader from './fileList/Uploader/Uploader'
@@ -10,7 +11,7 @@ import PopUp from './PopUp/PopUp'
 
 export default function Disk() {
     const isOpen = useSelector(state => state.uploader.isOpen)
-
+    const isFetching = useSelector(state => state.user.isFetching)
     const currentDir = useSelector(state => state.files.currentDir)
     const display = useSelector(state => state.files.display)
     const folderPathStack = useSelector(state => state.files.folderPathStack)
@@ -61,6 +62,9 @@ export default function Disk() {
         dispatch(getFiles(currentDir, sort))
 
     }, [currentDir, sort])
+
+    if (isFetching) return <Preloader />
+
     return (!dragEnter ?
 
         <div className="disk" onDragEnter={onDragEnterHandler} onDragLeave={onDragLeaveHandler} onDragOver={onDragEnterHandler}>
