@@ -26,6 +26,7 @@
   animation: file-enter 500ms forwards;
 }
 .empty {
+  margin-top: 15px;
   box-shadow: var(--shadow);
   height: 80vh;
   display: grid;

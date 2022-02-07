@@ -5,7 +5,7 @@ import File from './File/File'
 import './FileList.css'
 export default function FileList() {
     const files = useSelector(state => state.files.files)
-    if (files.length === 0) return <div className='empty'><div>Files not found</div></div>
+    if (files.length === 0) return <div className='empty'><div>File not found</div></div>
     return (
         <div className="fileList">
             <div className="fileList_header">

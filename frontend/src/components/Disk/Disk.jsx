@@ -8,6 +8,9 @@ import './Disk.css'
 import FileList from './fileList/FileList'
 import Uploader from './fileList/Uploader/Uploader'
 import PopUp from './PopUp/PopUp'
+import lister from '../../assets/images/lister.png'
+import folderer from '../../assets/images/folderer.png'
+
 
 export default function Disk() {
     const isOpen = useSelector(state => state.uploader.isOpen)
@@ -70,20 +73,38 @@ export default function Disk() {
         <div className="disk" onDragEnter={onDragEnterHandler} onDragLeave={onDragLeaveHandler} onDragOver={onDragEnterHandler}>
             <PopUp display={display} />
             <div className="disk_btns">
-                {currentDir && <button className="disk_back btn" onClick={backNavHandler}>Back</button>}
-                <button className="disk_newFolder btn" onClick={popUpHandler}>New folder</button>
-                <div className="disk_upload">
-                    <label htmlFor="diskUploadInput" className="disk_uploadLabel">Upload file</label>
-                    <input
-                        onChange={(e) => fileUploadHandler(e)} multiple={true}
-                        type="file" id='diskUploadInput' className="diskUploadInput" />
+                <div className='disk_mainBtn'>
+                    {currentDir && <button className="disk_back btn" onClick={backNavHandler}>Back</button>}
+                    <button className="disk_newFolder btn" onClick={popUpHandler}>New folder</button>
+                    <div className="disk_upload">
+                        <label htmlFor="diskUploadInput" className="disk_uploadLabel">Upload file</label>
+                        <input
+                            onChange={(e) => fileUploadHandler(e)} multiple={true}
+                            type="file" id='diskUploadInput' className="diskUploadInput" />
+                    </div>
                 </div>
-                <select className='disk_select' value={sort} onChange={(e) => setSort(e.target.value)}>
-                    <option value="filter">Filter</option>
-                    <option value="name">Name</option>
-                    <option value="type">Type</option>
-                    <option value="date">Date</option>
-                </select>
+                <div className='disk_secondBtn'>
+                    <div className="disk_vueBtn">
+                        <button className='btn vue'>
+                            <img src={lister} alt="" />
+                        </button>
+                        <button className='btn vue'>
+                            <img src={folderer} alt="" />
+                        </button>
+
+                    </div>
+
+                    <select className='disk_select' value={sort} onChange={(e) => setSort(e.target.value)}>
+                        <option value="filter">Filter</option>
+                        <option value="name">Name</option>
+                        <option value="type">Type</option>
+                        <option value="date">Date</option>
+                    </select>
+
+                </div>
+
+
+
             </div>
             <FileList />
             {isOpen && <Uploader />}
