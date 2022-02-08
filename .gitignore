@@ -6,6 +6,8 @@
 .pnp.js
 
 /backend/config
+/backend/files
+/backend/static
 
 # testing
 /coverage

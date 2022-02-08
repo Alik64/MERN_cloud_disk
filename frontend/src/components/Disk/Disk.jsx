@@ -88,11 +88,11 @@ export default function Disk() {
                 </div>
                 <div className='disk_secondBtn'>
                     <div className="disk_vueBtn">
-                        <button onClick={() => dispatch(setVue("list"))} className='btn vue'>
-                            <img src={lister} alt="" />
+                        <button onClick={() => dispatch(setVue("list"))} className='vue vue-list'>
+
                         </button>
-                        <button onClick={() => dispatch(setVue("folder"))} className='btn vue'>
-                            <img src={folderer} alt="" />
+                        <button onClick={() => dispatch(setVue("folder"))} className='vue vue-folder'>
+
                         </button>
 
                     </div>
