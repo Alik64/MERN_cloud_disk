@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getFiles, uploadFile } from '../../actions/file'
-import { popFromStack, setCurrentDir, togglePopUp } from '../../redux/fileReducer'
+import { popFromStack, setCurrentDir, togglePopUp, setVue } from '../../redux/fileReducer'
 import { setToggleOpen } from '../../redux/uploadReducer'
 import Preloader from '../Preloader/Preloader'
 import './Disk.css'
@@ -12,16 +12,19 @@ import lister from '../../assets/images/lister.png'
 import folderer from '../../assets/images/folderer.png'
 
 
+
 export default function Disk() {
     const isOpen = useSelector(state => state.uploader.isOpen)
     const isFetching = useSelector(state => state.user.isFetching)
     const currentDir = useSelector(state => state.files.currentDir)
+
     const display = useSelector(state => state.files.display)
     const folderPathStack = useSelector(state => state.files.folderPathStack)
     const [dragEnter, setDragEnter] = useState(false)
     const [sort, setSort] = useState('filter');
 
     const dispatch = useDispatch()
+
     const popUpHandler = () => {
         dispatch(togglePopUp("flex"))
     }
@@ -85,17 +88,16 @@ export default function Disk() {
                 </div>
                 <div className='disk_secondBtn'>
                     <div className="disk_vueBtn">
-                        <button className='btn vue'>
+                        <button onClick={() => dispatch(setVue("list"))} className='btn vue'>
                             <img src={lister} alt="" />
                         </button>
-                        <button className='btn vue'>
+                        <button onClick={() => dispatch(setVue("folder"))} className='btn vue'>
                             <img src={folderer} alt="" />
                         </button>
 
                     </div>
 
                     <select className='disk_select' value={sort} onChange={(e) => setSort(e.target.value)}>
-                        <option value="filter">Filter</option>
                         <option value="name">Name</option>
                         <option value="type">Type</option>
                         <option value="date">Date</option>

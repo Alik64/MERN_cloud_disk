@@ -3,7 +3,7 @@
 }
 .fileList_header {
   border-radius: 5px;
-  margin: 15px;
+  margin: 15px 0;
   padding: 15px 0;
   display: grid;
   grid-template-columns: 1fr 4fr repeat(4, 1fr);
@@ -32,6 +32,7 @@
   display: grid;
   place-items: center;
 }
+
 @keyframes file-enter {
   0% {
     opacity: 0;
@@ -41,4 +42,11 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.folder-vue {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
 }

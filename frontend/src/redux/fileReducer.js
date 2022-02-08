@@ -5,12 +5,15 @@ const POP_UP_TOGGLE = "fileReducer_POP_UP_TOGGLE"
 const PUSH_TO_STACK = "fileReducer_PUSH_TO_STACK"
 const POP_FROM_STACK = "fileReducer_POP_FROM_STACK"
 const DELETE_FILE = "fileReducer_DELETE_FILE"
+const SET_VUE = "fileReducer_SET_VUE"
+
 
 const initialState = {
     files: [],
     currentDir: null,
     display: "none",
-    folderPathStack: []
+    folderPathStack: [],
+    vue: "list"
 }
 
 export default function fileReducer(state = initialState, action) {
@@ -23,7 +26,6 @@ export default function fileReducer(state = initialState, action) {
         case ADD_FILE:
             return { ...state, files: [...state.files, action.payload] }
         case DELETE_FILE:
-
             return { ...state, files: [...state.files.filter(file => file._id !== action.payload)] }
         case POP_UP_TOGGLE:
             return { ...state, display: action.payload }
@@ -31,6 +33,9 @@ export default function fileReducer(state = initialState, action) {
             return { ...state, folderPathStack: [...state.folderPathStack, action.payload] }
         case POP_FROM_STACK:
             return { ...state, folderPathStack: state.folderPathStack.slice(0, action.payload) }
+        case SET_VUE:
+            return { ...state, vue: action.payload }
+
         default:
             return state
     }
@@ -44,3 +49,4 @@ export const deleteFileAction = (fileID) => ({ type: DELETE_FILE, payload: fileI
 export const togglePopUp = (display) => ({ type: POP_UP_TOGGLE, payload: display })
 export const pushToStack = (folder) => ({ type: PUSH_TO_STACK, payload: folder })
 export const popFromStack = (index) => ({ type: POP_FROM_STACK, payload: index })
+export const setVue = (vue) => ({ type: SET_VUE, payload: vue })
