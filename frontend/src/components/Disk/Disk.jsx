@@ -88,13 +88,9 @@ export default function Disk() {
                 </div>
                 <div className='disk_secondBtn'>
                     <div className="disk_vueBtn">
-                        <button onClick={() => dispatch(setVue("list"))} className='vue vue-list'>
 
-                        </button>
-                        <button onClick={() => dispatch(setVue("folder"))} className='vue vue-folder'>
-
-                        </button>
-
+                        <img src={lister} alt="" className='lister' onClick={() => dispatch(setVue("list"))} />
+                        <img src={folderer} alt="" className='lister' onClick={() => dispatch(setVue("folder"))} />
                     </div>
 
                     <select className='disk_select' value={sort} onChange={(e) => setSort(e.target.value)}>

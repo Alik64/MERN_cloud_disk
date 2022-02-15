@@ -41,6 +41,12 @@
 .vue-folder {
   background-image: url("../../assets/images/folderer.png");
 }
+.lister {
+  width: 36px;
+  border: 1px solid var(--blue);
+  background-color: var(--blue);
+  border-radius: 5px;
+}
 label {
   border: none;
   display: flex;
