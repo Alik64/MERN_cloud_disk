@@ -6,16 +6,21 @@ const fileUpload = require('express-fileupload') // npm i express-fileupload
 const authRouter = require("./routes/auth.routes")
 const fileRouter = require("./routes/file.routes")
 const app = express()
-const PORT = config.get('serverPort')
+const PORT = process.env.PORT || config.get('serverPort')
 const corsMiddleware = require('./middleware/cors.middleware')
+const filePathMiddleware = require('./middleware/filepath.middleware')
+const path = require('path')
 const cors = require("cors")
 
 // Upload files
 app.use(fileUpload({}))
 // Allow CORS
 app.use(corsMiddleware)
+// path middleware
+app.use(filePathMiddleware(path.resolve(__dirname, 'files')))
 // to parse JSON 
 app.use(express.json())
+
 // path to static files
 app.use(express.static('static'))
 

@@ -93,8 +93,10 @@ export default function Disk() {
                         <img src={lister} alt="" className='lister' onClick={() => dispatch(setVue("list"))} />
                         <img src={folderer} alt="" className='lister' onClick={() => dispatch(setVue("folder"))} />
                     </div>
-
-                    <select className='disk_select' value={sort} onChange={(e) => setSort(e.target.value)}>
+                    <label htmlFor="dudu">DUDU</label>
+                    <select
+                        id='dudu'
+                        className='disk_select' value={sort} onChange={(e) => setSort(e.target.value)}>
                         <option value="name">Name</option>
                         <option value="type">Type</option>
                         <option value="date">Date</option>
