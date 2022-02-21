@@ -11,6 +11,9 @@
 .disk_mainBtn {
   display: flex;
 }
+.disk_btnIco {
+  width: 36px;
+}
 .disk_mainBtn > *,
 .disk_vueBtn > * {
   margin-right: 10px;
@@ -46,6 +49,9 @@
   border: 1px solid var(--blue);
   background-color: var(--blue);
   border-radius: 5px;
+}
+.disk_uploadLabel {
+  padding: 5px 10px;
 }
 label {
   border: none;
@@ -104,5 +110,8 @@ label:hover {
   }
   .disk_dropArea h3 {
     font-size: 20px;
+  }
+  .disk_vueBtn {
+    display: none;
   }
 }

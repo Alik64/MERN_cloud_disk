@@ -12,17 +12,27 @@
 }
 .navbar_item {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   padding: 10px;
 }
 .navbar_item > * {
   padding: 10px;
 }
-
+.navbar_auth {
+  display: flex;
+}
+.navbar_link {
+  margin: 0 5px;
+}
 .navbar_user {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.navbar_ava {
+  margin-left: auto;
+  display: flex;
 }
 .navbar_logout {
   margin: 10px;
@@ -53,6 +63,16 @@ h2 {
   color: var(--blue);
 }
 
+@media screen and (max-width: 360px) {
+  .navbar_container {
+  }
+  .navbar_auth {
+    flex-direction: column;
+  }
+  .navbar_link {
+    margin: 10px 5px;
+  }
+}
 @media screen and (max-width: 450px) {
   .navbar_item > * {
     padding: 5px;
@@ -62,5 +82,21 @@ h2 {
   }
   .logo {
     max-width: 130px;
+  }
+
+  .navbar_ava {
+    flex-direction: column;
+    position: absolute;
+    top: 17px;
+    right: 25px;
+  }
+  .navbar_avatar {
+    width: 50px;
+    height: 50px;
+  }
+
+  .navbar_item input {
+    justify-self: flex-end;
+    padding: 10px 0 10px 15px;
   }
 }

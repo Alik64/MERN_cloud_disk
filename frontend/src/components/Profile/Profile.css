@@ -1,1 +1,39 @@
+.profile_container {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
+.profile_container > * {
+  margin-bottom: 50px;
+}
+
+.profile_avatarBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.avatar_management {
+  display: flex;
+}
+.avatar_management label {
+  margin-right: 50px;
+}
+
+.profile_avatarImg {
+  margin-bottom: 30px;
+  border-radius: 50%;
+  border: 5px solid var(--green);
+  box-shadow: var(--shadow);
+  width: 150px;
+}
+.profile_avatarBox {
+  box-shadow: var(--shadow);
+  padding: 30px;
+  border-radius: 5%;
+}
+#avatarInput {
+  display: none;
+}

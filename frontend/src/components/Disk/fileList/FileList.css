@@ -32,6 +32,10 @@
   display: grid;
   place-items: center;
 }
+.empty img {
+  position: relative;
+  left: 15px;
+}
 
 @keyframes file-enter {
   0% {
