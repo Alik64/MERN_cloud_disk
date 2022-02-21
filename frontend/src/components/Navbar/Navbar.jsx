@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
-import style from './Navbar.module.css'
-import Logo from '../../assets/images/cloud-cd-logo.png'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+
+import style from './Navbar.module.css'
+import Logo from '../../assets/images/cloud-cd-logo.png'
+import defaultUser from '../../assets/images/defaultUser.png'
+
 import { logout } from '../../redux/userReducer'
 import { getFiles, searchFile } from '../../actions/file'
 
@@ -11,11 +14,15 @@ import { getFiles, searchFile } from '../../actions/file'
 export default function Navbar() {
     const isAuth = useSelector(state => state.user.isAuth)
     const isFetching = useSelector(state => state.user.isFetching)
-    const userId = useSelector(state => state.user.currentUser.email)
+    const currentUser = useSelector(state => state.user.currentUser)
     const currentDir = useSelector(state => state.files.currentDir)
+
     const dispatch = useDispatch()
+
     const [searchName, setSearchName] = useState('');
     const [searchTimeout, setSearchTimeout] = useState(false)
+
+    const avatar = currentUser.avatar ? true : false
 
     function searchChangeHandler(e) {
         setSearchName(e.target.value)
@@ -52,7 +59,8 @@ export default function Navbar() {
                     {!isAuth && <div className={style.navbar_link}><Link to='/signup'>Sign Up</Link></div>}
                     {isAuth &&
                         <div className={style.navbar_user}>
-                            <div>{userId} </div>
+                            <img src={defaultUser} alt="" className={style.navbar_avatar} />
+
                             <div className={style.navbar_logout} onClick={() => dispatch(logout())}> Logout</div>
                         </div>
                     }
