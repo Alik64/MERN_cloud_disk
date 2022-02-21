@@ -45,7 +45,7 @@ export default function Navbar() {
         <div className={style.navbar}>
             <div className={style.navbar_container}>
                 <div className={style.navbar_item}>
-                    <img src={Logo} alt="logo" className={style.logo} />
+                    <NavLink to='/'><img src={Logo} alt="logo" className={style.logo} /></NavLink>
                     <h2> <span className={style.spanGreen}>Cloud</span><span className={style.spanBlue}>Disk</span></h2>
                 </div>
 
@@ -55,17 +55,23 @@ export default function Navbar() {
                         placeholder='Search'
                         value={searchName}
                         onChange={(e) => searchChangeHandler(e)} />}
-                    {!isAuth && <div className={style.navbar_link}><Link to='/login'>Sign In</Link></div>}
-                    {!isAuth && <div className={style.navbar_link}><Link to='/signup'>Sign Up</Link></div>}
-                    {isAuth &&
-                        <div className={style.navbar_user}>
-                            <NavLink to="/profile">
-                                <img src={avatar} alt="" className={style.navbar_avatar} />
-                            </NavLink>
+                    <div className={style.navbar_auth}>
+                        {!isAuth && <div className={style.navbar_link}><Link to='/login'>Sign In</Link></div>}
+                        {!isAuth && <div className={style.navbar_link}><Link to='/signup'>Sign Up</Link></div>}
+                    </div>
 
-                        </div>
-                    }
-                    {isAuth && <div className={style.navbar_logout} onClick={() => dispatch(logout())}> Logout</div>}
+                    <div className={style.navbar_ava}>
+                        {isAuth &&
+                            <div className={style.navbar_user}>
+                                <NavLink to="/profile">
+                                    <img src={avatar} alt="" className={style.navbar_avatar} />
+                                </NavLink>
+
+                            </div>
+                        }
+                        {isAuth && <div className={style.navbar_logout} onClick={() => dispatch(logout())}> Logout</div>}
+
+                    </div>
                 </div>
             </div>
 

@@ -8,7 +8,7 @@ import { API_URL } from '../config'
 
 
 export const instanceAxios = axios.create({
-    baseURL: '${API_URL}api/',
+    baseURL: `${API_URL}api/`,
     headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
 })
 

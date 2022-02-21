@@ -10,6 +10,7 @@ import Uploader from './fileList/Uploader/Uploader'
 import PopUp from './PopUp/PopUp'
 import lister from '../../assets/images/lister.png'
 import folderer from '../../assets/images/folderer.png'
+import upload from '../../assets/images/upload.png'
 
 
 
@@ -80,7 +81,7 @@ export default function Disk() {
                     {currentDir && <button className="disk_back btn" onClick={backNavHandler}>Back</button>}
                     <button className="disk_newFolder btn" onClick={popUpHandler}>New folder</button>
                     <div className="disk_upload">
-                        <label htmlFor="diskUploadInput" className="disk_uploadLabel">Upload file</label>
+                        <label htmlFor="diskUploadInput" className="disk_uploadLabel"><img className='disk_btnIco' src={upload} alt="upload" /></label>
                         <input
                             onChange={(e) => fileUploadHandler(e)} multiple={true}
                             type="file" id='diskUploadInput' className="diskUploadInput" />
