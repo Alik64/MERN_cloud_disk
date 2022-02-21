@@ -3,11 +3,12 @@ import { setFiles, addFile, deleteFileAction } from "../redux/fileReducer";
 import { addUploadFile, setProgressBar } from '../redux/uploadReducer';
 import { v4 as uuidv4 } from 'uuid';
 import { toggleIsFetching } from '../redux/userReducer';
+import { API_URL } from '../config'
 
 
 
 export const instanceAxios = axios.create({
-    baseURL: 'http://localhost:5000/api/',
+    baseURL: '${API_URL}api/',
     headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
 })
 
@@ -85,7 +86,7 @@ export function uploadFile(file, dirId) {
 
 export async function downloadFile(file) {
 
-    const response = await fetch(`http://localhost:5000/api/files/download?id=${file._id}`, {
+    const response = await fetch(`${API_URL}api/files/download?id=${file._id}`, {
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
         }
