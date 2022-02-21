@@ -8,7 +8,7 @@ import defaultUser from '../../assets/images/defaultUser.png'
 
 import { logout } from '../../redux/userReducer'
 import { getFiles, searchFile } from '../../actions/file'
-
+import { API_URL } from '../../config'
 
 
 export default function Navbar() {
@@ -22,7 +22,7 @@ export default function Navbar() {
     const [searchName, setSearchName] = useState('');
     const [searchTimeout, setSearchTimeout] = useState(false)
 
-    const avatar = currentUser.avatar ? true : false
+    const avatar = currentUser.avatar ? `${API_URL + currentUser.avatar}` : defaultUser
 
     function searchChangeHandler(e) {
         setSearchName(e.target.value)
@@ -59,7 +59,7 @@ export default function Navbar() {
                     {!isAuth && <div className={style.navbar_link}><Link to='/signup'>Sign Up</Link></div>}
                     {isAuth &&
                         <div className={style.navbar_user}>
-                            <img src={defaultUser} alt="" className={style.navbar_avatar} />
+                            <img src={avatar} alt="" className={style.navbar_avatar} />
 
                             <div className={style.navbar_logout} onClick={() => dispatch(logout())}> Logout</div>
                         </div>
