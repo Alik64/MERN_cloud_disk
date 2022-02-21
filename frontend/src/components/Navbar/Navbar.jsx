@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
 import style from './Navbar.module.css'
@@ -59,11 +59,13 @@ export default function Navbar() {
                     {!isAuth && <div className={style.navbar_link}><Link to='/signup'>Sign Up</Link></div>}
                     {isAuth &&
                         <div className={style.navbar_user}>
-                            <img src={avatar} alt="" className={style.navbar_avatar} />
+                            <NavLink to="/profile">
+                                <img src={avatar} alt="" className={style.navbar_avatar} />
+                            </NavLink>
 
-                            <div className={style.navbar_logout} onClick={() => dispatch(logout())}> Logout</div>
                         </div>
                     }
+                    {isAuth && <div className={style.navbar_logout} onClick={() => dispatch(logout())}> Logout</div>}
                 </div>
             </div>
 
