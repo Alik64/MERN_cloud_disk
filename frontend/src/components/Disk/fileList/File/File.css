@@ -17,6 +17,7 @@
 .File_img {
   max-height: 64px;
   margin-left: 5px;
+  pointer-events: none;
 }
 .File_ico {
   width: 36px;
@@ -72,6 +73,7 @@
   max-width: 64px;
   max-height: 64px;
   margin-left: 5px;
+  pointer-events: none;
 }
 .folder_File_download,
 .folder_File_delete {

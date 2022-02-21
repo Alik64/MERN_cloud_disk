@@ -16,6 +16,8 @@ app.use(fileUpload({}))
 app.use(corsMiddleware)
 // to parse JSON 
 app.use(express.json())
+// path to static files
+app.use(express.static('static'))
 
 // Routes => app.use(url , router)
 app.use("/api/auth", authRouter)
