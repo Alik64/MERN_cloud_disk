@@ -7,12 +7,15 @@ import { useEffect } from "react";
 import { auth } from "./actions/user";
 import Disk from "./components/Disk/Disk";
 import Profile from "./components/Profile/Profile";
+import { setUser } from "./redux/userReducer";
 
 
 
 
 function App() {
   const isAuth = useSelector(state => state.user.isAuth)
+  const currentUser = useSelector(state => state.user.currentUser)
+
 
   const dispatch = useDispatch()
 
@@ -21,6 +24,7 @@ function App() {
 
     if (localStorage.getItem('token')) {
       dispatch(auth())
+      console.log(currentUser)
     }
 
   }, [])

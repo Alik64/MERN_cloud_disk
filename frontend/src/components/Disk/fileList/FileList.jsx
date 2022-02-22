@@ -1,17 +1,25 @@
 import React from 'react'
 import { TransitionGroup, CSSTransition } from "react-transition-group"
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import File from './File/File'
 import './FileList.css'
 
 import empty from '../../../assets/images/travolta.gif'
+import { useEffect } from 'react'
+import { getFiles } from '../../../actions/file'
+
 
 
 
 export default function FileList() {
+
     const files = useSelector(state => state.files.files)
     const vue = useSelector(state => state.files.vue)
+
+    const currentDir = useSelector(state => state.files.currentDir)
+    const dispatch = useDispatch()
+
 
     if (files.length === 0) return <div className='empty'><div><img src={empty} alt="" /></div></div>
     return (

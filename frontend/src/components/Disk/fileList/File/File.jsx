@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './File.css'
 import folder from '../../../../assets/images/folder.png'
 import garbage from '../../../../assets/images/garbage.png'
@@ -6,7 +6,7 @@ import download from '../../../../assets/images/download.png'
 import docs from '../../../../assets/images/file.png'
 import { useDispatch, useSelector } from 'react-redux'
 import { pushToStack, setCurrentDir } from '../../../../redux/fileReducer'
-import { deleteFile, downloadFile } from '../../../../actions/file'
+import { deleteFile, downloadFile, getFiles } from '../../../../actions/file'
 import sizeFormat from '../../../../utils/sizeFormat'
 
 export default function File({ file }) {
@@ -31,6 +31,7 @@ export default function File({ file }) {
         console.log(file)
         dispatch(deleteFile(file))
     }
+
     return (
         vue == "list"
             ? <div className='File' onClick={() => openFolderHandler(file)}>

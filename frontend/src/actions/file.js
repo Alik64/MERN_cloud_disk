@@ -30,6 +30,7 @@ export function getFiles(dirId, sort) {
 
             const response = await instanceAxios.get(url)
             dispatch(setFiles(response.data))
+
         } catch (e) {
             alert(e.response.data.message)
         } finally {

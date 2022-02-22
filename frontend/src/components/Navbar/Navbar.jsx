@@ -9,6 +9,7 @@ import defaultUser from '../../assets/images/defaultUser.png'
 import { logout } from '../../redux/userReducer'
 import { getFiles, searchFile } from '../../actions/file'
 import { API_URL } from '../../config'
+import { setFiles } from '../../redux/fileReducer'
 
 
 export default function Navbar() {
@@ -26,11 +27,11 @@ export default function Navbar() {
 
     function searchChangeHandler(e) {
         setSearchName(e.target.value)
-        if (searchTimeout != false) {
+        if (searchTimeout !== false) {
             clearTimeout(searchTimeout)
         }
         //put show loader here - optional*
-        if (e.target.value != '') {
+        if (e.target.value !== '') {
             setSearchTimeout(setTimeout((value) => {
                 dispatch(searchFile(value));
             }, 500, e.target.value))
@@ -39,6 +40,10 @@ export default function Navbar() {
         }
     }
 
+    function logoutHandler() {
+        dispatch(logout())
+        dispatch(setFiles([]))
+    }
     if (isFetching && localStorage.getItem("token")) return null
 
     return (
@@ -69,7 +74,7 @@ export default function Navbar() {
 
                             </div>
                         }
-                        {isAuth && <div className={style.navbar_logout} onClick={() => dispatch(logout())}> Logout</div>}
+                        {isAuth && <div className={style.navbar_logout} onClick={() => logoutHandler()}> Logout</div>}
 
                     </div>
                 </div>

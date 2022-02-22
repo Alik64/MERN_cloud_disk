@@ -11,7 +11,7 @@ import { API_URL } from '../../config'
 export default function Profile() {
 
     const currentUser = useSelector(state => state.user.currentUser)
-    console.log(currentUser)
+
     const dispatch = useDispatch()
 
     function changeHandler(e) {

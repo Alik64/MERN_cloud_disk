@@ -11,7 +11,7 @@ module.exports = (req, res, next) => {
 
     try {
         // token is composed of two parts (Bearer token) => split to take just token
-        const token = req.headers.authorization.split(' ')[1]
+        const token = req.headers.authorization.split(' ')[1];
         if (!token) {
             return res.status(401).json({ message: 'Auth error' })
         }

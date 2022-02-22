@@ -11,14 +11,21 @@ import PopUp from './PopUp/PopUp'
 import lister from '../../assets/images/lister.png'
 import folderer from '../../assets/images/folderer.png'
 import upload from '../../assets/images/upload.png'
+import { setUser } from '../../redux/userReducer'
 
 
 
 export default function Disk() {
+
     const isOpen = useSelector(state => state.uploader.isOpen)
     const isFetching = useSelector(state => state.user.isFetching)
-    const currentDir = useSelector(state => state.files.currentDir)
 
+    const currentUser = useSelector(state => state.user.currentUser)
+
+    console.log('currentUser', currentUser)
+
+    const currentDir = useSelector(state => state.files.currentDir)
+    console.log('currentDir', currentDir)
     const display = useSelector(state => state.files.display)
     const folderPathStack = useSelector(state => state.files.folderPathStack)
     const [dragEnter, setDragEnter] = useState(false)
@@ -66,9 +73,10 @@ export default function Disk() {
 
 
     useEffect(() => {
-        dispatch(getFiles(currentDir, sort))
 
-    }, [currentDir, sort])
+        dispatch(getFiles(currentDir, null))
+
+    }, [currentDir, currentUser, sort])
 
     if (isFetching) return <Preloader />
 
@@ -93,9 +101,9 @@ export default function Disk() {
                         <img src={lister} alt="" className='lister' onClick={() => dispatch(setVue("list"))} />
                         <img src={folderer} alt="" className='lister' onClick={() => dispatch(setVue("folder"))} />
                     </div>
-                    <label htmlFor="dudu">DUDU</label>
+
                     <select
-                        id='dudu'
+
                         className='disk_select' value={sort} onChange={(e) => setSort(e.target.value)}>
                         <option value="name">Name</option>
                         <option value="type">Type</option>
