@@ -22,7 +22,8 @@ app.use(filePathMiddleware(path.resolve(__dirname, 'files')))
 app.use(express.json())
 
 // path to static files
-app.use(express.static('static'))
+app.use(express.static(path.join(process.env.PWD, 'static')));
+
 
 // Routes => app.use(url , router)
 app.use("/api/auth", authRouter)
@@ -34,7 +35,7 @@ app.use("/api/files", fileRouter)
 
 const start = async () => {
     try {
-        await mongoose.connect(process.env.REACT_APP_MONGODB_URL)
+        await mongoose.connect(process.env.REACT_APP_MONGODB_URL);
 
         app.listen(PORT, () => {
             console.log(`server is deployed on port ${PORT}`)
