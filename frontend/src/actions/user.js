@@ -31,12 +31,14 @@ export const login = (email, password) => {
 
 
             dispatch(setUser(response.data.user))
+            console.log('token', response.data.token)
             localStorage.setItem('token', response.data.token)
             dispatch(toggleIsFetching(false))
 
         } catch (e) {
             dispatch(toggleIsFetching(false))
-            alert(e.response.data.message)
+            // alert(e.response.data.message)
+            console.log(e.response.data.message)
         }
     }
 }
