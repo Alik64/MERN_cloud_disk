@@ -3,9 +3,14 @@
   "version": "1.0.0",
   "description": "backend for CloudDisk",
   "main": "index.js",
+  "engines": {
+    "node": "14.17.5",
+    "npm": "7.21.1"
+},
+
   "scripts": {
-   
     "start": "node index.js",
+    "start-prod":"nodemon index.js",
     "dev": "nodemon index.js"
   },
   "author": "",
