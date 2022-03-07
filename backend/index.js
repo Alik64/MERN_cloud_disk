@@ -26,7 +26,7 @@ app.use(filePathMiddleware(path.resolve(__dirname, 'files')))
 app.use(express.json())
 
 // path to static files
-app.use(express.static('static'))
+app.use('/static', express.static('static'))
 
 
 // Routes => app.use(url , router)
