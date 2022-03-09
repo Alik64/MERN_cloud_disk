@@ -2,7 +2,10 @@ import axios from 'axios'
 import { setUser, toggleIsFetching } from '../redux/userReducer'
 import { API_URL } from '../config'
 
-
+export const validateMsg = (message) => {
+    console.log(message)
+    return message
+}
 
 export const registration = async (email, password) => {
     try {
@@ -21,6 +24,9 @@ export const registration = async (email, password) => {
 }
 
 export const login = (email, password) => {
+
+
+
     return async dispatch => {
 
         try {
@@ -39,6 +45,7 @@ export const login = (email, password) => {
             dispatch(toggleIsFetching(false))
             // alert(e.response.data.message)
             console.log(e.response.data.message)
+            validateMsg(e.response.data.message)
         }
     }
 }
